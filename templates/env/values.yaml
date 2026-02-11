@@ -1,0 +1,16 @@
+app:
+  name: my-service
+  team: team-platform
+  env: dev
+
+image:
+  repository: <account-id>.dkr.ecr.<region>.amazonaws.com/my-service
+  tag: "<git-sha>-dev"
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
