@@ -1,0 +1,5 @@
+name: my-service
+owner: team-platform
+oncall: "#oncall-channel"
+runbook: docs/runbook.md
+tier: 2

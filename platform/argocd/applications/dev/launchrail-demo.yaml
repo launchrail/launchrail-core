@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: launchrail-demo-dev
+  namespace: argocd
+  labels:
+    app.kubernetes.io/managed-by: launchrail
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: launchrail-demo
+  source:
+    repoURL: https://github.com/YOUR_GITHUB_ORG/launchrail-demo.git
+    targetRevision: main
+    path: helm/launchrail-demo
+    helm:
+      valueFiles:
+        # Replace with your environments repo raw URL (or use a repo + ref via ApplicationSet).
+        - https://raw.githubusercontent.com/YOUR_GITHUB_ORG/launchrail-environments/main/dev/launchrail-demo/values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
